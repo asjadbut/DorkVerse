@@ -750,5 +750,601 @@ const dorksDatabase = [
         query: 'site:{DOMAIN} ext:java OR ext:py OR ext:rb OR ext:pl OR ext:php OR ext:asp OR ext:aspx OR ext:jsp OR ext:js OR ext:ts OR ext:go OR ext:c OR ext:cpp OR ext:cs OR ext:scala OR ext:swift OR ext:kt',
         tech: [],
         vuln: ["disclosure"]
+    },
+
+    // AWS Cloud Dorks
+    {
+        title: "AWS S3 Buckets",
+        query: 'site:s3.amazonaws.com "{DOMAIN}"',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "AWS S3 Bucket URLs in Domain",
+        query: 'site:{DOMAIN} inurl:s3.amazonaws.com OR inurl:".s3." OR intext:"s3://"',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "AWS CloudFront Distribution",
+        query: 'site:cloudfront.net "{DOMAIN}"',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "AWS Elastic Beanstalk",
+        query: 'site:elasticbeanstalk.com "{DOMAIN}"',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "AWS API Gateway",
+        query: 'site:execute-api.amazonaws.com "{DOMAIN}"',
+        tech: ["aws"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "AWS Lambda Functions",
+        query: 'site:{DOMAIN} inurl:lambda OR intext:"lambda.amazonaws.com" OR intext:".lambda-url."',
+        tech: ["aws"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "AWS ECS/EKS Resources",
+        query: 'site:{DOMAIN} intext:"eks.amazonaws.com" OR intext:"ecs.amazonaws.com" OR intext:".eks."',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "AWS Configuration Files",
+        query: 'site:{DOMAIN} ext:pem OR ext:key intext:"BEGIN RSA PRIVATE KEY" OR intext:"aws_access_key" OR intext:"aws_secret"',
+        tech: ["aws"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "AWS Credentials in Code",
+        query: 'site:{DOMAIN} "AKIA" OR "aws_access_key_id" OR "aws_secret_access_key"',
+        tech: ["aws"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "AWS RDS Endpoints",
+        query: 'site:{DOMAIN} intext:".rds.amazonaws.com" OR intext:"rds." OR intext:"database."',
+        tech: ["aws"],
+        vuln: ["cloud", "disclosure"]
+    },
+
+    // Azure Cloud Dorks
+    {
+        title: "Azure Blob Storage",
+        query: 'site:blob.core.windows.net "{DOMAIN}"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Azure Blob URLs in Domain",
+        query: 'site:{DOMAIN} inurl:blob.core.windows.net OR intext:".blob." OR intext:"azure-storage"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Azure App Services",
+        query: 'site:azurewebsites.net "{DOMAIN}"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Azure Functions",
+        query: 'site:azurewebsites.net inurl:api OR site:{DOMAIN} intext:".azurewebsites.net"',
+        tech: ["azure"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "Azure DevOps",
+        query: 'site:dev.azure.com "{DOMAIN}" OR site:{DOMAIN} intext:"dev.azure.com" OR intext:"visualstudio.com"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Azure CDN Endpoints",
+        query: 'site:azureedge.net "{DOMAIN}" OR site:{DOMAIN} intext:".azureedge.net"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Azure API Management",
+        query: 'site:azure-api.net "{DOMAIN}" OR site:{DOMAIN} intext:".azure-api.net"',
+        tech: ["azure"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "Azure Key Vault References",
+        query: 'site:{DOMAIN} intext:"vault.azure.net" OR intext:"keyvault" OR intext:"@Microsoft.KeyVault"',
+        tech: ["azure"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Azure Credentials",
+        query: 'site:{DOMAIN} "azure_client_id" OR "azure_client_secret" OR "azure_tenant_id" OR "DefaultAzureCredential"',
+        tech: ["azure"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Azure SQL Database",
+        query: 'site:{DOMAIN} intext:".database.windows.net" OR intext:"azure-sql" OR intext:"sqlazure"',
+        tech: ["azure"],
+        vuln: ["cloud", "disclosure"]
+    },
+
+    // Google Cloud Platform Dorks
+    {
+        title: "GCP Storage Buckets",
+        query: 'site:storage.googleapis.com "{DOMAIN}"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "GCP Storage URLs in Domain",
+        query: 'site:{DOMAIN} inurl:storage.googleapis.com OR inurl:storage.cloud.google.com OR intext:"gs://"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "GCP App Engine",
+        query: 'site:appspot.com "{DOMAIN}"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "GCP Cloud Functions",
+        query: 'site:cloudfunctions.net "{DOMAIN}" OR site:{DOMAIN} intext:".cloudfunctions.net" OR intext:"cloud-function"',
+        tech: ["gcp"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "GCP Cloud Run Services",
+        query: 'site:run.app "{DOMAIN}" OR site:{DOMAIN} intext:".run.app" OR intext:"cloudrun"',
+        tech: ["gcp"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "GCP Firebase",
+        query: 'site:firebaseio.com "{DOMAIN}" OR site:firebaseapp.com "{DOMAIN}" OR site:{DOMAIN} intext:"firebase"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "GCP API Keys",
+        query: 'site:{DOMAIN} "AIza" OR "google_api_key" OR "GOOGLE_APPLICATION_CREDENTIALS"',
+        tech: ["gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "GCP Service Account Keys",
+        query: 'site:{DOMAIN} ext:json intext:"type": "service_account" OR intext:"private_key_id"',
+        tech: ["gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "GCP BigQuery Datasets",
+        query: 'site:{DOMAIN} intext:"bigquery.googleapis.com" OR intext:"bq://" OR intext:"bigquery"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "GCP Cloud SQL",
+        query: 'site:{DOMAIN} intext:".cloudsql." OR intext:"cloud-sql" OR intext:"cloudsql"',
+        tech: ["gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+
+    // Multi-Cloud & Container Dorks
+    {
+        title: "Docker Registry",
+        query: 'site:{DOMAIN} inurl:"v2/_catalog" OR intext:"docker-registry" OR intext:"registry.hub.docker.com"',
+        tech: ["docker"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Kubernetes Dashboards",
+        query: 'site:{DOMAIN} inurl:"kubernetes-dashboard" OR intext:"k8s" OR intext:"kubectl"',
+        tech: ["kubernetes"],
+        vuln: ["cloud", "admin"]
+    },
+    {
+        title: "Cloud Configuration Files",
+        query: 'site:{DOMAIN} ext:yaml OR ext:yml intext:"cloud" OR intext:"kubernetes" OR intext:"docker-compose"',
+        tech: [],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Terraform State Files",
+        query: 'site:{DOMAIN} ext:tfstate OR intext:"terraform.tfstate" OR intext:"terraform_remote_state"',
+        tech: [],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Cloud Environment Variables",
+        query: 'site:{DOMAIN} ext:env intext:"AWS" OR intext:"AZURE" OR intext:"GOOGLE" OR intext:"CLOUD" OR intext:"API_KEY"',
+        tech: [],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Cloud Metadata Endpoints",
+        query: 'site:{DOMAIN} intext:"169.254.169.254" OR intext:"metadata.google.internal" OR intext:"metadata.azure.com"',
+        tech: [],
+        vuln: ["cloud", "ssrf", "disclosure"]
+    },
+
+    // PII (Personally Identifiable Information) Dorks
+    {
+        title: "Email Addresses Exposed",
+        query: 'site:{DOMAIN} intext:"@" (inurl:email OR inurl:contacts OR inurl:users OR inurl:members OR inurl:customers)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Phone Numbers Exposed",
+        query: 'site:{DOMAIN} intext:"phone" OR intext:"mobile" OR intext:"tel:" OR intext:"telephone" (inurl:contact OR inurl:user OR inurl:customer)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Social Security Numbers",
+        query: 'site:{DOMAIN} intext:"SSN" OR intext:"social security" OR intext:"social_security_number" OR intext:"ssn:"',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Credit Card Information",
+        query: 'site:{DOMAIN} intext:"card number" OR intext:"credit card" OR intext:"cc:" OR intext:"cvv" OR intext:"card_number"',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Personal Documents (Resumes/CVs)",
+        query: 'site:{DOMAIN} ext:pdf OR ext:doc OR ext:docx (intext:"resume" OR intext:"curriculum vitae" OR intext:"CV" OR intext:"personal information")',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "ID Documents & Passports",
+        query: 'site:{DOMAIN} intext:"passport" OR intext:"driver license" OR intext:"national id" OR intext:"identification" ext:pdf OR ext:jpg OR ext:png',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "User Database Exports",
+        query: 'site:{DOMAIN} ext:sql OR ext:csv OR ext:xlsx (intext:"users" OR intext:"customers" OR intext:"members" OR intext:"employees")',
+        tech: [],
+        vuln: ["pii", "disclosure", "backup"]
+    },
+    {
+        title: "Customer Information Files",
+        query: 'site:{DOMAIN} inurl:customer OR inurl:client (ext:xls OR ext:xlsx OR ext:csv OR ext:txt OR ext:pdf)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Employee Information",
+        query: 'site:{DOMAIN} intext:"employee id" OR intext:"employee_id" OR intext:"staff" OR intext:"payroll" (ext:xls OR ext:xlsx OR ext:csv OR ext:pdf)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Medical Records & Health Data",
+        query: 'site:{DOMAIN} intext:"medical record" OR intext:"patient" OR intext:"health" OR intext:"diagnosis" OR intext:"prescription" ext:pdf OR ext:doc',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Banking & Financial Documents",
+        query: 'site:{DOMAIN} intext:"bank account" OR intext:"account number" OR intext:"routing number" OR intext:"IBAN" OR intext:"swift code"',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Tax Documents",
+        query: 'site:{DOMAIN} intext:"tax return" OR intext:"W-2" OR intext:"1099" OR intext:"tax id" OR intext:"EIN" ext:pdf',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Address & Location Data",
+        query: 'site:{DOMAIN} intext:"home address" OR intext:"street address" OR intext:"zip code" OR intext:"postal code" (inurl:user OR inurl:profile OR inurl:customer)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Date of Birth Information",
+        query: 'site:{DOMAIN} intext:"date of birth" OR intext:"dob" OR intext:"birth date" OR intext:"birthday" (inurl:user OR inurl:profile OR inurl:member)',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Private Messages & Communications",
+        query: 'site:{DOMAIN} intext:"private message" OR intext:"confidential" OR inurl:inbox OR inurl:messages ext:txt OR ext:pdf OR ext:eml',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "User Registration Data",
+        query: 'site:{DOMAIN} inurl:register OR inurl:signup OR inurl:registration (intext:"username" OR intext:"password" OR intext:"email")',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "API Keys with PII Access",
+        query: 'site:{DOMAIN} intext:"api_key" OR intext:"apikey" OR intext:"api-key" (intext:"user" OR intext:"customer" OR intext:"profile")',
+        tech: [],
+        vuln: ["pii", "disclosure", "api"]
+    },
+    {
+        title: "Biometric Data References",
+        query: 'site:{DOMAIN} intext:"fingerprint" OR intext:"biometric" OR intext:"facial recognition" OR intext:"retina scan"',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+    {
+        title: "Login Credentials in Files",
+        query: 'site:{DOMAIN} ext:txt OR ext:log OR ext:cfg (intext:"username" AND intext:"password") OR (intext:"user:" AND intext:"pass:")',
+        tech: [],
+        vuln: ["pii", "disclosure", "config"]
+    },
+    {
+        title: "GDPR/Privacy Policy Violations",
+        query: 'site:{DOMAIN} (inurl:export OR inurl:download OR inurl:data) (intext:"personal data" OR intext:"user data" OR intext:"customer data")',
+        tech: [],
+        vuln: ["pii", "disclosure"]
+    },
+
+    // Firebase Specific Dorks
+    {
+        title: "Firebase Realtime Database URLs",
+        query: 'site:{DOMAIN} intext:".firebaseio.com" OR inurl:firebaseio.com',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Open Firebase Databases (Domain-Specific)",
+        query: 'site:{DOMAIN}.firebaseio.com "/.json"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure", "config"]
+    },
+    {
+        title: "Firebase Databases Mentioning Domain",
+        query: 'site:firebaseio.com intext:"{DOMAIN}"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure", "config"]
+    },
+    {
+        title: "Firebase Configuration Files",
+        query: 'site:{DOMAIN} ext:json (intext:"firebaseConfig" OR intext:"apiKey" OR intext:"authDomain" OR intext:"projectId" OR intext:"storageBucket")',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firebase API Keys Exposed",
+        query: 'site:{DOMAIN} "AIza" AND ("firebase" OR "firebaseConfig" OR "apiKey")',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firebase Storage Buckets",
+        query: 'site:{DOMAIN} intext:".appspot.com" OR intext:"firebasestorage.googleapis.com" OR intext:"storage.firebase.com"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Firebase Hosting Sites",
+        query: 'site:firebaseapp.com "{DOMAIN}" OR site:web.app "{DOMAIN}"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Firebase Authentication Config",
+        query: 'site:{DOMAIN} intext:"firebase.auth()" OR intext:"signInWithEmailAndPassword" OR intext:"createUserWithEmailAndPassword"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Firebase Cloud Messaging Tokens",
+        query: 'site:{DOMAIN} intext:"FCM" OR intext:"firebase-messaging" OR intext:"messagingSenderId" OR intext:"fcm_token"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firebase Security Rules",
+        query: 'site:{DOMAIN} ext:json (intext:"rules" AND (intext:"read" OR intext:"write") AND intext:"firebase")',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firebase Admin SDK Credentials",
+        query: 'site:{DOMAIN} ext:json (intext:"type": "service_account" AND (intext:"firebase" OR intext:"firebase-adminsdk"))',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firestore Database References",
+        query: 'site:{DOMAIN} intext:"firestore" OR intext:".collection(" OR intext:"firebase.firestore()"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Firebase Functions Endpoints",
+        query: 'site:{DOMAIN} inurl:"cloudfunctions.net" OR intext:"firebase functions" OR intext:"functions.https.onCall"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "api"]
+    },
+    {
+        title: "Firebase Project IDs",
+        query: 'site:{DOMAIN} intext:"firebase-project-id" OR intext:"projectId:" OR intext:"project_id" (intext:"firebase" OR intext:"firebaseapp")',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+    {
+        title: "Firebase Environment Files",
+        query: 'site:{DOMAIN} ext:env OR ext:config (intext:"FIREBASE" OR intext:"REACT_APP_FIREBASE" OR intext:"NEXT_PUBLIC_FIREBASE")',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "config", "disclosure"]
+    },
+    {
+        title: "Firebase Dynamic Links",
+        query: 'site:{DOMAIN} intext:".page.link" OR intext:"firebase dynamic link" OR intext:"dynamicLinks"',
+        tech: ["firebase", "gcp"],
+        vuln: ["cloud", "disclosure"]
+    },
+
+    // Cloud Document Sharing & Access Control Dorks
+    {
+        title: "Google Drive Links",
+        query: 'site:{DOMAIN} inurl:"drive.google.com" OR intext:"docs.google.com" OR intext:"drive.google.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Docs Shared Documents",
+        query: 'site:{DOMAIN} inurl:"docs.google.com/document" OR intext:"docs.google.com/document/d/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Sheets Shared Spreadsheets",
+        query: 'site:{DOMAIN} inurl:"docs.google.com/spreadsheets" OR intext:"docs.google.com/spreadsheets/d/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Slides Presentations",
+        query: 'site:{DOMAIN} inurl:"docs.google.com/presentation" OR intext:"docs.google.com/presentation/d/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Forms",
+        query: 'site:{DOMAIN} inurl:"docs.google.com/forms" OR intext:"forms.gle" OR intext:"docs.google.com/forms/d/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Drive Folders",
+        query: 'site:{DOMAIN} inurl:"drive.google.com/drive/folders" OR intext:"drive.google.com/drive/folders/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Publicly Editable Google Docs",
+        query: 'site:docs.google.com intext:"{DOMAIN}" inurl:"/edit"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents", "idor"]
+    },
+    {
+        title: "Microsoft OneDrive Links",
+        query: 'site:{DOMAIN} inurl:"onedrive.live.com" OR intext:"1drv.ms" OR intext:"onedrive.live.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "SharePoint Documents",
+        query: 'site:{DOMAIN} inurl:"sharepoint.com" OR intext:".sharepoint.com" OR intext:"sharepoint"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Office 365 Shared Documents",
+        query: 'site:{DOMAIN} inurl:"office.com" OR intext:"office365" OR intext:"officeapps.live.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Dropbox Shared Links",
+        query: 'site:{DOMAIN} inurl:"dropbox.com" OR intext:"dl.dropboxusercontent.com" OR intext:"dropbox.com/s/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Dropbox Paper Documents",
+        query: 'site:{DOMAIN} inurl:"paper.dropbox.com" OR intext:"paper.dropbox.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Box.com Shared Files",
+        query: 'site:{DOMAIN} inurl:"box.com" OR intext:"app.box.com" OR intext:"box.com/s/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "iCloud Drive Links",
+        query: 'site:{DOMAIN} inurl:"icloud.com" OR intext:"icloud.com/iclouddrive" OR intext:"icloud.com/share"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Notion Shared Pages",
+        query: 'site:{DOMAIN} inurl:"notion.so" OR intext:"notion.site" OR intext:"notion.so"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Airtable Shared Bases",
+        query: 'site:{DOMAIN} inurl:"airtable.com" OR intext:"airtable.com/shr" OR intext:"airtable.com/app"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Trello Boards",
+        query: 'site:{DOMAIN} inurl:"trello.com/b/" OR intext:"trello.com/b/" OR intext:"trello.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Confluence Pages",
+        query: 'site:{DOMAIN} inurl:"atlassian.net" OR intext:"confluence" OR inurl:"/wiki/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Jira Issues & Projects",
+        query: 'site:{DOMAIN} inurl:"atlassian.net/browse" OR intext:"jira" OR inurl:"/jira/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Figma Design Files",
+        query: 'site:{DOMAIN} inurl:"figma.com/file" OR intext:"figma.com/file/" OR intext:"figma.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Miro Boards",
+        query: 'site:{DOMAIN} inurl:"miro.com" OR intext:"miro.com/app/board/"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Shared PDF Documents",
+        query: 'site:{DOMAIN} ext:pdf (inurl:"shared" OR inurl:"public" OR intext:"download")',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "WeTransfer Download Links",
+        query: 'site:{DOMAIN} inurl:"wetransfer.com" OR intext:"we.tl" OR intext:"wetransfer.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Google Colab Notebooks",
+        query: 'site:{DOMAIN} inurl:"colab.research.google.com" OR intext:"colab.research.google.com"',
+        tech: [],
+        vuln: ["cloud", "disclosure", "documents"]
+    },
+    {
+        title: "Pastebin & Code Sharing Links",
+        query: 'site:{DOMAIN} inurl:"pastebin.com" OR inurl:"gist.github.com" OR intext:"paste.ee" OR intext:"hastebin"',
+        tech: [],
+        vuln: ["disclosure", "documents"]
     }
 ];
