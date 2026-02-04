@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DorkVerse - Reconnaissance Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DorkVerse</h1>
+            <p class="subtitle">Powerful Reconnaissance Tool</p>
+        </header>
+
+        <div class="top-section">
+            <div class="domain-input-section">
+                <label for="domain">Target Domain:</label>
+                <div class="input-group">
+                    <input type="text" id="domain" placeholder="example.com" value="">
+                    <button id="applyDomain" class="btn-primary">Apply Domain</button>
+                    <button id="clearDomain" class="btn-secondary">Clear</button>
+                </div>
+                <p class="hint">Enter domain without http:// or https://</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalDorks">0</span>
+                    <span class="stat-label">Total Dorks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="visibleDorks">0</span>
+                    <span class="stat-label">Filtered Dorks</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters-row">
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="techFilter">Tech Stack</label>
+                    <select id="techFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="php">PHP</option>
+                        <option value="asp">ASP.NET</option>
+                        <option value="jsp">JSP/Java</option>
+                        <option value="wordpress">WordPress</option>
+                        <option value="drupal">Drupal</option>
+                        <option value="joomla">Joomla</option>
+                        <option value="laravel">Laravel</option>
+                        <option value="django">Django</option>
+                        <option value="nodejs">Node.js</option>
+                        <option value="python">Python</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="apache">Apache</option>
+                        <option value="nginx">Nginx</option>
+                        <option value="iis">IIS</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="vulnFilter">Vulnerability Type</label>
+                    <select id="vulnFilter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="sqli">SQL Injection</option>
+                        <option value="xss">XSS</option>
+                        <option value="lfi">LFI/RFI</option>
+                        <option value="openredirect">Open Redirect</option>
+                        <option value="ssrf">SSRF</option>
+                        <option value="rce">RCE</option>
+                        <option value="idor">IDOR</option>
+                        <option value="disclosure">Info Disclosure</option>
+                        <option value="upload">File Upload</option>
+                        <option value="backup">Backup Files</option>
+                        <option value="config">Config Files</option>
+                        <option value="login">Login Pages</option>
+                        <option value="admin">Admin Panels</option>
+                        <option value="api">API Endpoints</option>
+                        <option value="subdomain">Subdomains</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-section">
+            <input type="text" id="searchDorks" placeholder="Search dorks...">
+        </div>
+
+        <div class="dorks-container" id="dorksContainer">
+            <!-- Dorks will be dynamically generated here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>Use responsibly. Always get permission before testing. Respect robots.txt and rate limits.</p>
+        <p>Made for Bug Bounty Hunters</p>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="dorks-database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
