@@ -1,4 +1,4 @@
-# Advanced Google Dorks - Bug Bounty Hunter Tool
+# DorkVerse - Reconnaissance  Tool
 
 A comprehensive, interactive Google Dorks tool designed for bug bounty hunters and security researchers. This tool provides an extensive database of 150+ enhanced Google dorks with smart filtering capabilities and automatic domain insertion.
 
@@ -123,83 +123,6 @@ This tool is designed for **authorized security testing only**. Always:
 
 **Unauthorized access to computer systems is illegal.**
 
-## 🛠️ Customization
-
-### Adding New Dorks
-
-Edit `dorks-database.js` and add new entries:
-
-```javascript
-{
-    title: "Your Dork Title",
-    query: 'site:{DOMAIN} your dork query here',
-    tech: ["php", "wordpress"],  // Tech stack tags (use [] for generic)
-    vuln: ["sqli", "disclosure"]  // Vulnerability tags
-}
-```
-
-**Available Tech Tags**: `php`, `asp`, `jsp`, `wordpress`, `drupal`, `joomla`, `laravel`, `django`, `nodejs`, `python`, `ruby`, `apache`, `nginx`, `iis`
-
-**Available Vuln Tags**: `sqli`, `xss`, `lfi`, `openredirect`, `ssrf`, `rce`, `idor`, `disclosure`, `upload`, `backup`, `config`, `login`, `admin`, `api`, `subdomain`
-
-### Modifying Filters
-
-1. **Add new tech filter**: Edit the `#techFilter` select in `index.html`:
-```html
-<option value="yourtech">Your Technology</option>
-```
-
-2. **Add new vulnerability filter**: Edit the `#vulnFilter` select in `index.html`:
-```html
-<option value="yourvuln">Your Vulnerability</option>
-```
-
-3. **Update dorks**: Tag your dorks with the new filter values in `dorks-database.js`
-
-### Styling
-
-Modify `styles.css` to customize:
-- **Colors**: Update CSS variables in `:root` section
-  - `--primary-color`: Main accent color (currently #4CAF50)
-  - `--accent-color`: Highlight color (currently #69f0ae)
-  - `--background-color`: Main background (currently #111111)
-- **Layout**: Adjust grid templates and spacing
-- **Typography**: Change font families and sizes
-- **Responsive breakpoints**: Modify media queries for different screen sizes
-
-## 🌐 Deployment
-
-### GitHub Pages
-
-1. Create a new repository on GitHub
-2. Upload all files
-3. Go to Settings → Pages
-4. Select branch and root folder
-5. Your site will be live at `https://yourusername.github.io/reponame/`
-
-### Local Server
-
-```bash
-# Python 3
-python -m http.server 8000
-
-# PHP
-php -S localhost:8000
-
-# Node.js (with http-server)
-npx http-server
-```
-
-Then open `http://localhost:8000` in your browser.
-
-## 📱 Browser Compatibility
-
-- ✅ Chrome/Edge (latest)
-- ✅ Firefox (latest)
-- ✅ Safari (latest)
-- ✅ Opera (latest)
-- ⚠️ IE11 (partial support)
-
 ## 🤝 Contributing
 
 Contributions are welcome! You can:
@@ -227,7 +150,7 @@ This project is open source and available for educational and authorized securit
 
 Inspired by [TakSec's Google Dorks Bug Bounty](https://github.com/TakSec/google-dorks-bug-bounty/) project.
 
-Enhanced and expanded for the bug bounty community with 150+ comprehensive dorks 🛡️
+Enhanced and expanded for the security researchers community with 150+ comprehensive dorks 🛡️
 
 ---
 
