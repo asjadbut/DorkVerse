@@ -475,7 +475,7 @@ const dorksDatabase = [
         title: "Password Files",
         query: 'site:{DOMAIN} inurl:password OR inurl:passwd OR inurl:pwd OR inurl:pass OR inurl:credentials OR inurl:auth OR inurl:secret OR inurl:token OR inurl:key',
         tech: [],
-        vuln: ["disclosure"]
+        vuln: ["disclosure", "secrets"]
     },
     {
         title: "Configuration Backup",
@@ -487,19 +487,19 @@ const dorksDatabase = [
         title: "SSH Private Keys",
         query: 'site:{DOMAIN} ext:pem OR ext:key "PRIVATE KEY"',
         tech: [],
-        vuln: ["disclosure"]
+        vuln: ["disclosure", "secrets"]
     },
     {
         title: "API Keys and Tokens",
         query: 'site:{DOMAIN} intext:"api_key" OR intext:"apikey" OR intext:"token" OR intext:"access_key" OR intext:"secret_key" OR intext:"api_secret" OR intext:"client_secret" OR intext:"auth_token" OR intext:"bearer"',
         tech: [],
-        vuln: ["disclosure"]
+        vuln: ["disclosure", "secrets"]
     },
     {
         title: "Database Credentials",
         query: 'site:{DOMAIN} intext:"DB_PASSWORD" OR intext:"database_password" OR intext:"db_pass" OR intext:"mysql_password" OR intext:"db_user" OR intext:"DATABASE_URL" OR intext:"POSTGRES_PASSWORD" OR intext:"MONGODB_URI"',
         tech: [],
-        vuln: ["disclosure", "config"]
+        vuln: ["disclosure", "config", "secrets"]
     },
 
     // File Upload Dorks
@@ -1346,5 +1346,217 @@ const dorksDatabase = [
         query: 'site:{DOMAIN} inurl:"pastebin.com" OR inurl:"gist.github.com" OR intext:"paste.ee" OR intext:"hastebin"',
         tech: [],
         vuln: ["disclosure", "documents"]
+    },
+
+    // Comprehensive Secrets & Credentials Dorks
+    {
+        title: "GitHub Personal Access Tokens",
+        query: 'site:{DOMAIN} "ghp_" OR "github_pat_" OR "gho_" OR "ghu_" OR "ghs_" OR "ghr_"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "GitLab Tokens",
+        query: 'site:{DOMAIN} "glpat-" OR "gitlab" (intext:"token" OR intext:"api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "GitHub OAuth Tokens",
+        query: 'site:{DOMAIN} "github" (intext:"client_id" OR intext:"client_secret" OR intext:"access_token")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Slack Tokens & Webhooks",
+        query: 'site:{DOMAIN} "xox" ("xoxb" OR "xoxa" OR "xoxp" OR "xoxr") OR intext:"slack.com/api/" OR intext:"hooks.slack.com"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Slack Webhooks",
+        query: 'site:{DOMAIN} inurl:"hooks.slack.com" OR intext:"hooks.slack.com/services/"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Stripe API Keys",
+        query: 'site:{DOMAIN} "sk_live_" OR "pk_live_" OR "sk_test_" OR "pk_test_" OR "rk_live_" OR "rk_test_"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "PayPal Credentials",
+        query: 'site:{DOMAIN} intext:"paypal" (intext:"api_key" OR intext:"client_id" OR intext:"secret" OR intext:"sandbox")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Twilio API Keys",
+        query: 'site:{DOMAIN} "SK" (intext:"twilio" OR intext:"account_sid" OR intext:"auth_token")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "SendGrid API Keys",
+        query: 'site:{DOMAIN} "SG." (intext:"sendgrid" OR intext:"api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Mailgun API Keys",
+        query: 'site:{DOMAIN} "key-" (intext:"mailgun" OR intext:"api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "NPM Tokens",
+        query: 'site:{DOMAIN} "npm_" OR ".npmrc" (intext:"_authToken" OR intext:"registry")`,
+        tech: ["nodejs"],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "PyPI Tokens",
+        query: 'site:{DOMAIN} "pypi-" OR ".pypirc" (intext:"token" OR intext:"password")`,
+        tech: ["python"],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Docker Registry Credentials",
+        query: 'site:{DOMAIN} ext:json intext:"auths" (intext:"docker.io" OR intext:"registry" OR intext:"auth")`,
+        tech: ["docker"],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Kubernetes Secrets",
+        query: 'site:{DOMAIN} ext:yaml (intext:"kind: Secret" OR intext:"type: kubernetes.io")`,
+        tech: ["kubernetes"],
+        vuln: ["secrets", "config", "disclosure"]
+    },
+    {
+        title: "JWT Tokens",
+        query: 'site:{DOMAIN} intext:"eyJ" (intext:"jwt" OR intext:"token" OR intext:"authorization")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "OAuth Client Secrets",
+        query: 'site:{DOMAIN} intext:"client_secret" OR intext:"clientSecret" OR intext:"oauth_secret"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "RSA Private Keys",
+        query: 'site:{DOMAIN} "BEGIN RSA PRIVATE KEY" OR "BEGIN OPENSSH PRIVATE KEY" OR "BEGIN PRIVATE KEY"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "PGP Private Keys",
+        query: 'site:{DOMAIN} "BEGIN PGP PRIVATE KEY BLOCK"',
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: ".env Files Exposed",
+        query: 'site:{DOMAIN} ext:env OR inurl:".env" OR intext:"DB_PASSWORD" OR intext:"API_KEY"',
+        tech: [],
+        vuln: ["secrets", "config", "disclosure"]
+    },
+    {
+        title: ".git Config Files",
+        query: 'site:{DOMAIN} inurl:".git/config" OR inurl:".gitconfig"',
+        tech: [],
+        vuln: ["secrets", "config", "disclosure"]
+    },
+    {
+        title: "Hard-Coded Passwords in Code",
+        query: 'site:{DOMAIN} (ext:js OR ext:py OR ext:php OR ext:java) (intext:"password =" OR intext:"pwd =" OR intext:"passwd =")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Connection Strings",
+        query: 'site:{DOMAIN} intext:"Server=" OR intext:"Data Source=" OR intext:"Initial Catalog=" (intext:"password" OR intext:"pwd")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Heroku API Keys",
+        query: 'site:{DOMAIN} intext:"heroku" (intext:"api_key" OR intext:"HEROKU_API_KEY")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "DigitalOcean Tokens",
+        query: 'site:{DOMAIN} intext:"digitalocean" (intext:"token" OR intext:"api_token" OR intext:"DIGITALOCEAN_TOKEN")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Cloudflare API Keys",
+        query: 'site:{DOMAIN} intext:"cloudflare" (intext:"api_key" OR intext:"api_token" OR intext:"CF_API_KEY")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Telegram Bot Tokens",
+        query: 'site:{DOMAIN} intext:"bot" (intext:"telegram" OR intext:"TELEGRAM_BOT_TOKEN")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Discord Bot Tokens",
+        query: 'site:{DOMAIN} intext:"discord" (intext:"bot_token" OR intext:"DISCORD_TOKEN")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Square Access Tokens",
+        query: 'site:{DOMAIN} "sq0atp-" OR "sq0csp-" OR intext:"square" (intext:"access_token" OR intext:"application_id")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Shopify Access Tokens",
+        query: 'site:{DOMAIN} "shpat_" OR "shpss_" OR "shpca_" OR intext:"shopify" (intext:"access_token" OR intext:"api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Algolia API Keys",
+        query: 'site:{DOMAIN} intext:"algolia" (intext:"api_key" OR intext:"application_id" OR intext:"admin_api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "MapBox Tokens",
+        query: 'site:{DOMAIN} "pk.eyJ" OR intext:"mapbox" (intext:"access_token" OR intext:"api_key")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Auth0 Credentials",
+        query: 'site:{DOMAIN} intext:"auth0" (intext:"client_secret" OR intext:"client_id" OR intext:"domain")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Okta API Tokens",
+        query: 'site:{DOMAIN} intext:"okta" (intext:"api_token" OR intext:"client_secret")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Bitbucket Credentials",
+        query: 'site:{DOMAIN} intext:"bitbucket" (intext:"app_password" OR intext:"access_token")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Credentials in Source Files",
+        query: 'site:{DOMAIN} ext:log OR ext:txt (intext:"password" OR intext:"username") (intext:"login" OR intext:"admin")`,
+        tech: [],
+        vuln: ["secrets", "disclosure"]
     }
 ];
