@@ -98,12 +98,22 @@ function renderDorks() {
 
     filterDorks();
     updateStats();
+    
+    // Restore last-searched state if it exists
+    const lastSearchedIndex = localStorage.getItem('lastSearchedDork');
+    if (lastSearchedIndex !== null) {
+        const cards = document.querySelectorAll('.dork-card');
+        if (cards[lastSearchedIndex]) {
+            cards[lastSearchedIndex].classList.add('last-searched');
+        }
+    }
 }
 
 // Create a dork card element
 function createDorkCard(dork, index) {
     const card = document.createElement('div');
     card.className = 'dork-card';
+    card.style.position = 'relative';
     card.dataset.index = index;
 
     // Replace {DOMAIN} with actual domain
@@ -211,8 +221,27 @@ function searchGoogle(index) {
         ? query.replace(/{DOMAIN}/g, currentDomain)
         : query;
 
+    // Mark this card as last searched
+    markLastSearched(index);
+
     const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     window.open(googleUrl, '_blank');
+}
+
+// Mark a dork card as last searched
+function markLastSearched(index) {
+    // Remove last-searched class from all cards
+    document.querySelectorAll('.dork-card').forEach(card => {
+        card.classList.remove('last-searched');
+    });
+
+    // Add last-searched class to the clicked card
+    const cards = document.querySelectorAll('.dork-card');
+    if (cards[index]) {
+        cards[index].classList.add('last-searched');
+        // Store in localStorage
+        localStorage.setItem('lastSearchedDork', index);
+    }
 }
 
 // Copy to clipboard utility

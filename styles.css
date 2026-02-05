@@ -313,6 +313,27 @@ header h1 {
     transform: translateY(-2px);
 }
 
+.dork-card.last-searched {
+    border-color: var(--primary);
+    border-width: 3px;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    background: rgba(76, 175, 80, 0.05);
+}
+
+.dork-card.last-searched::before {
+    content: "Last Searched";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: var(--primary);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    font-weight: 600;
+    z-index: 1;
+}
+
 .dork-card.hidden {
     display: none;
 }
