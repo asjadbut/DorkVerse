@@ -1357,13 +1357,13 @@ const dorksDatabase = [
     },
     {
         title: "GitLab Tokens",
-        query: 'site:{DOMAIN} "glpat-" OR "gitlab" (intext:"token" OR intext:"api_key")`,
+        query: 'site:{DOMAIN} "glpat-" OR "gitlab" (intext:"token" OR intext:"api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "GitHub OAuth Tokens",
-        query: 'site:{DOMAIN} "github" (intext:"client_id" OR intext:"client_secret" OR intext:"access_token")`,
+        query: 'site:{DOMAIN} "github" (intext:"client_id" OR intext:"client_secret" OR intext:"access_token")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
@@ -1387,55 +1387,55 @@ const dorksDatabase = [
     },
     {
         title: "PayPal Credentials",
-        query: 'site:{DOMAIN} intext:"paypal" (intext:"api_key" OR intext:"client_id" OR intext:"secret" OR intext:"sandbox")`,
+        query: 'site:{DOMAIN} intext:"paypal" (intext:"api_key" OR intext:"client_id" OR intext:"secret" OR intext:"sandbox")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Twilio API Keys",
-        query: 'site:{DOMAIN} "SK" (intext:"twilio" OR intext:"account_sid" OR intext:"auth_token")`,
+        query: 'site:{DOMAIN} "SK" (intext:"twilio" OR intext:"account_sid" OR intext:"auth_token")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "SendGrid API Keys",
-        query: 'site:{DOMAIN} "SG." (intext:"sendgrid" OR intext:"api_key")`,
+        query: 'site:{DOMAIN} "SG." (intext:"sendgrid" OR intext:"api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Mailgun API Keys",
-        query: 'site:{DOMAIN} "key-" (intext:"mailgun" OR intext:"api_key")`,
+        query: 'site:{DOMAIN} "key-" (intext:"mailgun" OR intext:"api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "NPM Tokens",
-        query: 'site:{DOMAIN} "npm_" OR ".npmrc" (intext:"_authToken" OR intext:"registry")`,
+        query: 'site:{DOMAIN} "npm_" OR ".npmrc" (intext:"_authToken" OR intext:"registry")',
         tech: ["nodejs"],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "PyPI Tokens",
-        query: 'site:{DOMAIN} "pypi-" OR ".pypirc" (intext:"token" OR intext:"password")`,
+        query: 'site:{DOMAIN} "pypi-" OR ".pypirc" (intext:"token" OR intext:"password")',
         tech: ["python"],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Docker Registry Credentials",
-        query: 'site:{DOMAIN} ext:json intext:"auths" (intext:"docker.io" OR intext:"registry" OR intext:"auth")`,
+        query: 'site:{DOMAIN} ext:json intext:"auths" (intext:"docker.io" OR intext:"registry" OR intext:"auth")',
         tech: ["docker"],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Kubernetes Secrets",
-        query: 'site:{DOMAIN} ext:yaml (intext:"kind: Secret" OR intext:"type: kubernetes.io")`,
+        query: 'site:{DOMAIN} ext:yaml (intext:"kind: Secret" OR intext:"type: kubernetes.io")',
         tech: ["kubernetes"],
         vuln: ["secrets", "config", "disclosure"]
     },
     {
         title: "JWT Tokens",
-        query: 'site:{DOMAIN} intext:"eyJ" (intext:"jwt" OR intext:"token" OR intext:"authorization")`,
+        query: 'site:{DOMAIN} intext:"eyJ" (intext:"jwt" OR intext:"token" OR intext:"authorization")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
@@ -1471,91 +1471,91 @@ const dorksDatabase = [
     },
     {
         title: "Hard-Coded Passwords in Code",
-        query: 'site:{DOMAIN} (ext:js OR ext:py OR ext:php OR ext:java) (intext:"password =" OR intext:"pwd =" OR intext:"passwd =")`,
+        query: 'site:{DOMAIN} (ext:js OR ext:py OR ext:php OR ext:java) (intext:"password =" OR intext:"pwd =" OR intext:"passwd =")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Connection Strings",
-        query: 'site:{DOMAIN} intext:"Server=" OR intext:"Data Source=" OR intext:"Initial Catalog=" (intext:"password" OR intext:"pwd")`,
+        query: 'site:{DOMAIN} intext:"Server=" OR intext:"Data Source=" OR intext:"Initial Catalog=" (intext:"password" OR intext:"pwd")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Heroku API Keys",
-        query: 'site:{DOMAIN} intext:"heroku" (intext:"api_key" OR intext:"HEROKU_API_KEY")`,
+        query: 'site:{DOMAIN} intext:"heroku" (intext:"api_key" OR intext:"HEROKU_API_KEY")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "DigitalOcean Tokens",
-        query: 'site:{DOMAIN} intext:"digitalocean" (intext:"token" OR intext:"api_token" OR intext:"DIGITALOCEAN_TOKEN")`,
+        query: 'site:{DOMAIN} intext:"digitalocean" (intext:"token" OR intext:"api_token" OR intext:"DIGITALOCEAN_TOKEN")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Cloudflare API Keys",
-        query: 'site:{DOMAIN} intext:"cloudflare" (intext:"api_key" OR intext:"api_token" OR intext:"CF_API_KEY")`,
+        query: 'site:{DOMAIN} intext:"cloudflare" (intext:"api_key" OR intext:"api_token" OR intext:"CF_API_KEY")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Telegram Bot Tokens",
-        query: 'site:{DOMAIN} intext:"bot" (intext:"telegram" OR intext:"TELEGRAM_BOT_TOKEN")`,
+        query: 'site:{DOMAIN} intext:"bot" (intext:"telegram" OR intext:"TELEGRAM_BOT_TOKEN")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Discord Bot Tokens",
-        query: 'site:{DOMAIN} intext:"discord" (intext:"bot_token" OR intext:"DISCORD_TOKEN")`,
+        query: 'site:{DOMAIN} intext:"discord" (intext:"bot_token" OR intext:"DISCORD_TOKEN")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Square Access Tokens",
-        query: 'site:{DOMAIN} "sq0atp-" OR "sq0csp-" OR intext:"square" (intext:"access_token" OR intext:"application_id")`,
+        query: 'site:{DOMAIN} "sq0atp-" OR "sq0csp-" OR intext:"square" (intext:"access_token" OR intext:"application_id")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Shopify Access Tokens",
-        query: 'site:{DOMAIN} "shpat_" OR "shpss_" OR "shpca_" OR intext:"shopify" (intext:"access_token" OR intext:"api_key")`,
+        query: 'site:{DOMAIN} "shpat_" OR "shpss_" OR "shpca_" OR intext:"shopify" (intext:"access_token" OR intext:"api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Algolia API Keys",
-        query: 'site:{DOMAIN} intext:"algolia" (intext:"api_key" OR intext:"application_id" OR intext:"admin_api_key")`,
+        query: 'site:{DOMAIN} intext:"algolia" (intext:"api_key" OR intext:"application_id" OR intext:"admin_api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "MapBox Tokens",
-        query: 'site:{DOMAIN} "pk.eyJ" OR intext:"mapbox" (intext:"access_token" OR intext:"api_key")`,
+        query: 'site:{DOMAIN} "pk.eyJ" OR intext:"mapbox" (intext:"access_token" OR intext:"api_key")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Auth0 Credentials",
-        query: 'site:{DOMAIN} intext:"auth0" (intext:"client_secret" OR intext:"client_id" OR intext:"domain")`,
+        query: 'site:{DOMAIN} intext:"auth0" (intext:"client_secret" OR intext:"client_id" OR intext:"domain")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Okta API Tokens",
-        query: 'site:{DOMAIN} intext:"okta" (intext:"api_token" OR intext:"client_secret")`,
+        query: 'site:{DOMAIN} intext:"okta" (intext:"api_token" OR intext:"client_secret")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Bitbucket Credentials",
-        query: 'site:{DOMAIN} intext:"bitbucket" (intext:"app_password" OR intext:"access_token")`,
+        query: 'site:{DOMAIN} intext:"bitbucket" (intext:"app_password" OR intext:"access_token")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     },
     {
         title: "Credentials in Source Files",
-        query: 'site:{DOMAIN} ext:log OR ext:txt (intext:"password" OR intext:"username") (intext:"login" OR intext:"admin")`,
+        query: 'site:{DOMAIN} ext:log OR ext:txt (intext:"password" OR intext:"username") (intext:"login" OR intext:"admin")',
         tech: [],
         vuln: ["secrets", "disclosure"]
     }
