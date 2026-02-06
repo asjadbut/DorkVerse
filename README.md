@@ -1,6 +1,6 @@
 # DorkVerse - Reconnaissance Tool
 
-A comprehensive Google Dorks tool for bug bounty hunters with 1500+ dorks, smart filtering, and automatic domain insertion.
+A comprehensive Google Dorks tool for bug bounty hunters with 200+ dorks, smart filtering, and automatic domain insertion.
 
 ## 🌟 Features
 
