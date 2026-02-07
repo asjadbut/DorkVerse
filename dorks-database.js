@@ -1068,6 +1068,66 @@ const dorksDatabase = [
         vuln: ["pii", "disclosure"]
     },
     {
+        title: "Internal Only Documents",
+        query: 'site:{DOMAIN} intext:"internal only" OR intext:"for internal use" OR intext:"internal use only" OR intext:"not for distribution" ext:pdf OR ext:doc OR ext:docx OR ext:ppt OR ext:pptx',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Confidential Documents",
+        query: 'site:{DOMAIN} intext:"confidential" OR intext:"strictly confidential" OR intext:"highly confidential" (ext:pdf OR ext:doc OR ext:docx OR ext:xls OR ext:xlsx)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Classified & Restricted Documents",
+        query: 'site:{DOMAIN} intext:"classified" OR intext:"restricted" OR intext:"sensitive" OR intext:"proprietary" (ext:pdf OR ext:doc OR ext:docx)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Draft & Work in Progress Documents",
+        query: 'site:{DOMAIN} intext:"draft" OR intext:"work in progress" OR intext:"wip" OR intext:"preliminary" OR intext:"do not distribute" (ext:pdf OR ext:doc OR ext:docx OR ext:ppt)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Company Private/Internal Presentations",
+        query: 'site:{DOMAIN} intext:"company private" OR intext:"internal presentation" OR intext:"internal meeting" OR intext:"confidential presentation" ext:ppt OR ext:pptx OR ext:pdf',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "NDA & Confidentiality Agreement Documents",
+        query: 'site:{DOMAIN} intext:"non-disclosure" OR intext:"nda" OR intext:"confidentiality agreement" OR intext:"proprietary information" ext:pdf OR ext:doc OR ext:docx',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Employee/Staff Only Documents",
+        query: 'site:{DOMAIN} intext:"employees only" OR intext:"staff only" OR intext:"internal staff" OR intext:"authorized personnel" (ext:pdf OR ext:doc OR ext:docx)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Executive/Management Only Documents",
+        query: 'site:{DOMAIN} intext:"executive only" OR intext:"management only" OR intext:"board confidential" OR intext:"leadership team" (ext:pdf OR ext:doc OR ext:ppt)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Internal Reports & Analysis",
+        query: 'site:{DOMAIN} intext:"internal report" OR intext:"internal analysis" OR intext:"confidential report" OR intext:"for internal review" ext:pdf OR ext:doc OR ext:docx OR ext:xls',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
+        title: "Not for Public Distribution",
+        query: 'site:{DOMAIN} intext:"not for public" OR intext:"do not publish" OR intext:"unpublished" OR intext:"private circulation" (ext:pdf OR ext:doc OR ext:docx)',
+        tech: [],
+        vuln: ["disclosure", "documents"]
+    },
+    {
         title: "User Registration Data",
         query: 'site:{DOMAIN} inurl:register OR inurl:signup OR inurl:registration (intext:"username" OR intext:"password" OR intext:"email")',
         tech: [],
@@ -1558,5 +1618,1030 @@ const dorksDatabase = [
         query: 'site:{DOMAIN} ext:log OR ext:txt (intext:"password" OR intext:"username") (intext:"login" OR intext:"admin")',
         tech: [],
         vuln: ["secrets", "disclosure"]
+    },
+
+    // React/Next.js/Vite Frontend Frameworks
+    {
+        title: "React Environment Variables",
+        query: 'site:{DOMAIN} "REACT_APP_" OR "NEXT_PUBLIC_" OR "VITE_" (intext:"API_KEY" OR intext:"SECRET" OR intext:"TOKEN")',
+        tech: ["react", "nextjs"],
+        vuln: ["config", "disclosure", "secrets"]
+    },
+    {
+        title: "Next.js Build Info",
+        query: 'site:{DOMAIN} inurl:"_next/static" OR inurl:".next" OR intext:"__NEXT_DATA__"',
+        tech: ["nextjs"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Next.js API Routes",
+        query: 'site:{DOMAIN} inurl:"/api/" ext:js OR inurl:"/api/" ext:ts',
+        tech: ["nextjs"],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "Vite Config Exposure",
+        query: 'site:{DOMAIN} inurl:"vite.config" OR intext:"vite.config.js" OR intext:"vite.config.ts"',
+        tech: ["react", "vue"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "React Source Maps",
+        query: 'site:{DOMAIN} ext:map inurl:".js.map" OR inurl:".jsx.map"',
+        tech: ["react"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Create React App Files",
+        query: 'site:{DOMAIN} inurl:"/static/js/" OR intext:"react-scripts" OR inurl:"precache-manifest"',
+        tech: ["react"],
+        vuln: ["disclosure"]
+    },
+
+    // Angular Frontend Framework
+    {
+        title: "Angular Environment Config",
+        query: 'site:{DOMAIN} inurl:"environment.ts" OR inurl:"environment.prod.ts" OR intext:"environment"',
+        tech: ["angular"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Angular Source Maps",
+        query: 'site:{DOMAIN} ext:map (inurl:"main" OR inurl:"polyfills" OR inurl:"vendor")',
+        tech: ["angular"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Angular CLI Files",
+        query: 'site:{DOMAIN} inurl:"angular.json" OR inurl:".angular-cli.json"',
+        tech: ["angular"],
+        vuln: ["config", "disclosure"]
+    },
+
+    // Vue.js Frontend Framework
+    {
+        title: "Vue.js Config Files",
+        query: 'site:{DOMAIN} inurl:"vue.config.js" OR intext:"VUE_APP_" OR intext:"createApp"',
+        tech: ["vue"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Vue.js Source Maps",
+        query: 'site:{DOMAIN} ext:map inurl:"app" (inurl:"js" OR inurl:"vue")',
+        tech: ["vue"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Nuxt.js Files",
+        query: 'site:{DOMAIN} inurl:".nuxt" OR inurl:"nuxt.config" OR intext:"__NUXT__"',
+        tech: ["vue"],
+        vuln: ["config", "disclosure"]
+    },
+
+    // Flask Python Framework
+    {
+        title: "Flask Debug Mode",
+        query: 'site:{DOMAIN} intext:"Werkzeug" OR intext:"Debugger" OR intext:"PIN" OR intext:"Flask" (intext:"Traceback" OR intext:"Error")',
+        tech: ["python", "flask"],
+        vuln: ["disclosure", "rce"]
+    },
+    {
+        title: "Flask Configuration",
+        query: 'site:{DOMAIN} inurl:"config.py" OR intext:"app.config" OR intext:"FLASK_" (intext:"SECRET_KEY" OR intext:"DATABASE")',
+        tech: ["python", "flask"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Flask Routes Exposure",
+        query: 'site:{DOMAIN} inurl:"/admin" OR inurl:"/dashboard" OR inurl:"/api" ext:py',
+        tech: ["python", "flask"],
+        vuln: ["admin", "api"]
+    },
+
+    // FastAPI Python Framework
+    {
+        title: "FastAPI Documentation",
+        query: 'site:{DOMAIN} inurl:"/docs" OR inurl:"/redoc" OR inurl:"/openapi.json" "FastAPI"',
+        tech: ["python", "fastapi"],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "FastAPI Swagger UI",
+        query: 'site:{DOMAIN} inurl:"/docs" intitle:"FastAPI" OR intitle:"API docs"',
+        tech: ["python", "fastapi"],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "FastAPI Endpoints",
+        query: 'site:{DOMAIN} intext:"FastAPI" OR intext:"@app.get" OR intext:"@app.post"',
+        tech: ["python", "fastapi"],
+        vuln: ["api", "disclosure"]
+    },
+
+    // Express.js Node Framework
+    {
+        title: "Express.js Error Pages",
+        query: 'site:{DOMAIN} intext:"Express" (intext:"Error" OR intext:"at " OR intext:"node_modules/express")',
+        tech: ["nodejs", "express"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Express Session Secrets",
+        query: 'site:{DOMAIN} intext:"express-session" OR intext:"session secret" OR intext:"express.session"',
+        tech: ["nodejs", "express"],
+        vuln: ["config", "disclosure", "secrets"]
+    },
+    {
+        title: "Express Routes Configuration",
+        query: 'site:{DOMAIN} inurl:"routes" ext:js OR intext:"app.get" OR intext:"app.post" OR intext:"router."',
+        tech: ["nodejs", "express"],
+        vuln: ["disclosure"]
+    },
+
+    // Spring Boot Java Framework
+    {
+        title: "Spring Boot Actuator Endpoints",
+        query: 'site:{DOMAIN} inurl:"/actuator" OR inurl:"/actuator/env" OR inurl:"/actuator/health" OR inurl:"/actuator/mappings" OR inurl:"/actuator/beans"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["disclosure", "admin"]
+    },
+    {
+        title: "Spring Boot Info Disclosure",
+        query: 'site:{DOMAIN} inurl:"/actuator/info" OR inurl:"/actuator/metrics" OR inurl:"/actuator/trace"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Spring Boot Heap Dump",
+        query: 'site:{DOMAIN} inurl:"/actuator/heapdump" OR inurl:"/heapdump"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Spring Boot Configuration Properties",
+        query: 'site:{DOMAIN} inurl:"application.properties" OR inurl:"application.yml" OR inurl:"bootstrap.yml"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Spring Boot Error Pages",
+        query: 'site:{DOMAIN} intext:"Whitelabel Error Page" OR intext:"There was an unexpected error" "Spring Boot"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Spring Framework Errors",
+        query: 'site:{DOMAIN} intext:"org.springframework" OR intext:"DispatcherServlet" OR intext:"HandlerMapping"',
+        tech: ["jsp", "java", "spring"],
+        vuln: ["disclosure"]
+    },
+
+    // GraphQL Advanced
+    {
+        title: "GraphQL Introspection Enabled",
+        query: 'site:{DOMAIN} inurl:graphql (intext:"__schema" OR intext:"__type" OR intext:"query IntrospectionQuery")',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "GraphQL IDE/Playground",
+        query: 'site:{DOMAIN} inurl:"/graphiql" OR inurl:"/playground" OR intitle:"GraphQL Playground" OR intitle:"GraphiQL"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "GraphQL Queries Exposed",
+        query: 'site:{DOMAIN} ext:graphql OR ext:gql OR intext:"query {" OR intext:"mutation {"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "GraphQL Schema Files",
+        query: 'site:{DOMAIN} ext:graphql intext:"type Query" OR intext:"type Mutation" OR intext:"schema {"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "Apollo GraphQL",
+        query: 'site:{DOMAIN} intext:"Apollo Server" OR intext:"apollo-server" OR inurl:"/.well-known/apollo"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+
+    // MongoDB Database
+    {
+        title: "MongoDB Exposed",
+        query: 'site:{DOMAIN} intext:"mongodb://" OR intext:"mongo://" OR intext:"MONGODB_URI"',
+        tech: ["mongodb"],
+        vuln: ["disclosure", "config"]
+    },
+    {
+        title: "MongoDB Connection Strings",
+        query: 'site:{DOMAIN} intext:"mongodb+srv://" OR intext:"mongodb://admin:" OR intext:"mongodb://root:"',
+        tech: ["mongodb"],
+        vuln: ["disclosure", "config", "secrets"]
+    },
+    {
+        title: "MongoDB Express Admin",
+        query: 'site:{DOMAIN} inurl:"mongo-express" OR intitle:"mongo express" OR intitle:"Home - Mongo Express"',
+        tech: ["mongodb"],
+        vuln: ["admin", "disclosure"]
+    },
+    {
+        title: "MongoDB Compass Connection",
+        query: 'site:{DOMAIN} intext:"MongoDB Compass" OR intext:"compass connection"',
+        tech: ["mongodb"],
+        vuln: ["disclosure"]
+    },
+
+    // Redis Cache/Database
+    {
+        title: "Redis Configuration",
+        query: 'site:{DOMAIN} intext:"redis://" OR intext:"REDIS_URL" OR intext:"REDIS_PASSWORD"',
+        tech: ["redis"],
+        vuln: ["disclosure", "config"]
+    },
+    {
+        title: "Redis Connection Strings",
+        query: 'site:{DOMAIN} intext:"redis://:" OR intext:"redis://default:" OR intext:"rediss://"',
+        tech: ["redis"],
+        vuln: ["disclosure", "config", "secrets"]
+    },
+    {
+        title: "Redis Commander Interface",
+        query: 'site:{DOMAIN} inurl:"redis-commander" OR intitle:"Redis Commander"',
+        tech: ["redis"],
+        vuln: ["admin", "disclosure"]
+    },
+
+    // Elasticsearch
+    {
+        title: "Elasticsearch Exposed Cluster",
+        query: 'site:{DOMAIN} inurl:":9200" OR inurl:":9200/_cat" OR inurl:"/_cluster/health"',
+        tech: ["elasticsearch"],
+        vuln: ["disclosure", "admin"]
+    },
+    {
+        title: "Elasticsearch Indices",
+        query: 'site:{DOMAIN} inurl:"/_cat/indices" OR inurl:"/_all/_search" OR inurl:"/_search"',
+        tech: ["elasticsearch"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Elasticsearch Bulk Endpoints",
+        query: 'site:{DOMAIN} inurl:"/_bulk" OR inurl:"/_mget" OR inurl:"/_msearch"',
+        tech: ["elasticsearch"],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "Kibana Dashboard",
+        query: 'site:{DOMAIN} inurl:"/app/kibana" OR intitle:"Kibana" OR inurl:"/kibana"',
+        tech: ["elasticsearch"],
+        vuln: ["admin", "disclosure"]
+    },
+
+    // Message Queues
+    {
+        title: "RabbitMQ Management Console",
+        query: 'site:{DOMAIN} inurl:":15672" OR intitle:"RabbitMQ Management" OR inurl:"/rabbitmq"',
+        tech: ["rabbitmq"],
+        vuln: ["admin", "disclosure"]
+    },
+    {
+        title: "RabbitMQ Credentials",
+        query: 'site:{DOMAIN} intext:"amqp://" OR intext:"RABBITMQ_" OR intext:"rabbitmq://"',
+        tech: ["rabbitmq"],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Apache Kafka Exposure",
+        query: 'site:{DOMAIN} inurl:":9092" OR intext:"kafka" OR intext:"KAFKA_BROKER"',
+        tech: ["kafka"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Kafka Admin UI",
+        query: 'site:{DOMAIN} inurl:"/kafka" OR intitle:"Kafka Manager" OR intitle:"Kafka UI"',
+        tech: ["kafka"],
+        vuln: ["admin", "disclosure"]
+    },
+
+    // CI/CD Tools
+    {
+        title: "Jenkins Dashboard",
+        query: 'site:{DOMAIN} inurl:"/jenkins" OR intitle:"Dashboard [Jenkins]" OR inurl:":8080/jenkins"',
+        tech: ["jenkins"],
+        vuln: ["admin", "disclosure"]
+    },
+    {
+        title: "Jenkins Build Information",
+        query: 'site:{DOMAIN} inurl:"/job/" OR inurl:"/view/" OR inurl:"/build/" "Jenkins"',
+        tech: ["jenkins"],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Jenkins Script Console",
+        query: 'site:{DOMAIN} inurl:"/script" "Jenkins" OR inurl:"/scriptler"',
+        tech: ["jenkins"],
+        vuln: ["rce", "admin"]
+    },
+    {
+        title: "Jenkins Credentials",
+        query: 'site:{DOMAIN} inurl:"/credentials" "Jenkins" OR intext:"jenkins" (intext:"password" OR intext:"token")',
+        tech: ["jenkins"],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "GitLab CI Configuration",
+        query: 'site:{DOMAIN} inurl:".gitlab-ci.yml" OR ext:gitlab-ci.yml',
+        tech: [],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "GitHub Actions Workflows",
+        query: 'site:{DOMAIN} inurl:".github/workflows" OR ext:yml (intext:"on:" OR intext:"jobs:")',
+        tech: [],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "CircleCI Configuration",
+        query: 'site:{DOMAIN} inurl:".circleci/config.yml" OR inurl:"circle.yml"',
+        tech: [],
+        vuln: ["config", "disclosure"]
+    },
+    {
+        title: "Travis CI Configuration",
+        query: 'site:{DOMAIN} inurl:".travis.yml"',
+        tech: [],
+        vuln: ["config", "disclosure"]
+    },
+
+    // Monitoring & Dashboards
+    {
+        title: "Grafana Dashboard",
+        query: 'site:{DOMAIN} inurl:"/grafana" OR intitle:"Grafana" OR inurl:":3000"',
+        tech: ["grafana"],
+        vuln: ["admin", "disclosure"]
+    },
+    {
+        title: "Grafana API Keys",
+        query: 'site:{DOMAIN} intext:"grafana" (intext:"api_key" OR intext:"GF_SECURITY")',
+        tech: ["grafana"],
+        vuln: ["secrets", "disclosure"]
+    },
+    {
+        title: "Prometheus Metrics",
+        query: 'site:{DOMAIN} inurl:"/metrics" OR inurl:":9090" OR intitle:"Prometheus"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Kibana Exposed",
+        query: 'site:{DOMAIN} inurl:":5601" OR inurl:"/app/kibana" OR intitle:"Kibana"',
+        tech: ["elasticsearch"],
+        vuln: ["admin", "disclosure"]
+    },
+
+    // Jupyter Notebooks
+    {
+        title: "Jupyter Notebook Interface",
+        query: 'site:{DOMAIN} inurl:":8888" OR inurl:"/tree" OR intitle:"Jupyter Notebook" OR intitle:"Home Page - Select or create a notebook"',
+        tech: ["python"],
+        vuln: ["disclosure", "admin"]
+    },
+    {
+        title: "JupyterLab Interface",
+        query: 'site:{DOMAIN} inurl:"/lab" intitle:"JupyterLab" OR inurl:"/lab/tree"',
+        tech: ["python"],
+        vuln: ["disclosure", "admin"]
+    },
+    {
+        title: "Jupyter Notebooks on GitHub",
+        query: 'site:{DOMAIN} ext:ipynb',
+        tech: ["python"],
+        vuln: ["disclosure"]
+    },
+
+    // CORS Misconfiguration
+    {
+        title: "CORS Wildcard Origin",
+        query: 'site:{DOMAIN} intext:"Access-Control-Allow-Origin: *" OR intext:"Access-Control-Allow-Credentials: true"',
+        tech: [],
+        vuln: ["cors", "disclosure"]
+    },
+    {
+        title: "CORS API Endpoints",
+        query: 'site:{DOMAIN} inurl:"/api/" (intext:"origin" OR intext:"cors" OR intext:"access-control")',
+        tech: [],
+        vuln: ["api", "cors"]
+    },
+
+    // CRLF Injection
+    {
+        title: "CRLF Injection Parameters",
+        query: 'site:{DOMAIN} inurl:"%0D%0A" OR inurl:"%0d%0a" OR inurl:"%0A" OR inurl:"%0a"',
+        tech: [],
+        vuln: ["crlf"]
+    },
+    {
+        title: "Header Injection Points",
+        query: 'site:{DOMAIN} inurl:"?redirect=" OR inurl:"?url=" OR inurl:"?return=" (intext:"%0d" OR intext:"%0a")',
+        tech: [],
+        vuln: ["crlf", "openredirect"]
+    },
+
+    // XXE (XML External Entity)
+    {
+        title: "XML Upload Endpoints",
+        query: 'site:{DOMAIN} inurl:"upload" OR inurl:"import" (intext:"xml" OR intext:"XML" OR ext:xml)',
+        tech: [],
+        vuln: ["xxe", "upload"]
+    },
+    {
+        title: "XML Processing Endpoints",
+        query: 'site:{DOMAIN} inurl:"parse" OR inurl:"parser" OR inurl:"process" (intext:"xml" OR ext:xml)',
+        tech: [],
+        vuln: ["xxe"]
+    },
+    {
+        title: "SOAP/XML Endpoints",
+        query: 'site:{DOMAIN} inurl:"soap" OR inurl:"xml" OR ext:wsdl OR ext:xml',
+        tech: [],
+        vuln: ["xxe", "api"]
+    },
+
+    // Deserialization
+    {
+        title: "Java Serialized Objects",
+        query: 'site:{DOMAIN} intext:"java.io.Serializable" OR intext:"ObjectInputStream" OR intext:"readObject"',
+        tech: ["jsp", "java"],
+        vuln: ["deserialization", "rce"]
+    },
+    {
+        title: "Python Pickle Files",
+        query: 'site:{DOMAIN} ext:pkl OR ext:pickle OR intext:"pickle.load" OR intext:"cPickle"',
+        tech: ["python"],
+        vuln: ["deserialization", "rce"]
+    },
+    {
+        title: "PHP Unserialize",
+        query: 'site:{DOMAIN} intext:"unserialize" OR intext:"O:" ext:php',
+        tech: ["php"],
+        vuln: ["deserialization", "rce"]
+    },
+    {
+        title: "Node.js Deserialization",
+        query: 'site:{DOMAIN} intext:"node-serialize" OR intext:"serialize-javascript" OR intext:"deserialize"',
+        tech: ["nodejs"],
+        vuln: ["deserialization", "rce"]
+    },
+
+    // Server-Side Template Injection (SSTI)
+    {
+        title: "Template Engine Error Messages",
+        query: 'site:{DOMAIN} intext:"Jinja2" OR intext:"Twig" OR intext:"Velocity" OR intext:"FreeMarker" (intext:"Error" OR intext:"Exception")',
+        tech: [],
+        vuln: ["ssti", "disclosure"]
+    },
+    {
+        title: "Template Files Exposed",
+        query: 'site:{DOMAIN} ext:tpl OR ext:twig OR ext:j2 OR ext:jinja OR ext:jinja2',
+        tech: [],
+        vuln: ["ssti", "disclosure"]
+    },
+    {
+        title: "SSTI in URL Parameters",
+        query: 'site:{DOMAIN} inurl:"{{" OR inurl:"}}" OR inurl:"${" OR inurl:"<%" OR inurl:"%>"',
+        tech: [],
+        vuln: ["ssti"]
+    },
+
+    // Authentication & Authorization
+    {
+        title: "Authentication Bypass Parameters",
+        query: 'site:{DOMAIN} inurl:"auth=" OR inurl:"authenticated=" OR inurl:"admin=" OR inurl:"user=" OR inurl:"login=" (inurl:"true" OR inurl:"1" OR inurl:"yes")',
+        tech: [],
+        vuln: ["auth", "bypass"]
+    },
+    {
+        title: "Debug/Test Login Pages",
+        query: 'site:{DOMAIN} inurl:"test" OR inurl:"debug" OR inurl:"dev" (inurl:"login" OR inurl:"auth")',
+        tech: [],
+        vuln: ["auth", "login"]
+    },
+    {
+        title: "Default Credentials Pages",
+        query: 'site:{DOMAIN} intext:"default password" OR intext:"default credentials" OR intext:"admin/admin"',
+        tech: [],
+        vuln: ["auth", "disclosure"]
+    },
+
+    // Broken Access Control
+    {
+        title: "Admin Functions Exposed",
+        query: 'site:{DOMAIN} inurl:"delete" OR inurl:"remove" OR inurl:"update" OR inurl:"modify" (inurl:"user" OR inurl:"account" OR inurl:"admin")',
+        tech: [],
+        vuln: ["bac", "admin"]
+    },
+    {
+        title: "Privilege Escalation Endpoints",
+        query: 'site:{DOMAIN} inurl:"promote" OR inurl:"grant" OR inurl:"role" OR inurl:"permission" OR inurl:"privilege"',
+        tech: [],
+        vuln: ["bac", "idor"]
+    },
+    {
+        title: "User Management APIs",
+        query: 'site:{DOMAIN} inurl:"/api/users" OR inurl:"/api/admin" OR inurl:"/api/accounts"',
+        tech: [],
+        vuln: ["api", "bac"]
+    },
+
+    // JWT Vulnerabilities
+    {
+        title: "JWT in URLs",
+        query: 'site:{DOMAIN} inurl:"jwt=" OR inurl:"token=" (inurl:"eyJ" OR intext:"eyJ")',
+        tech: [],
+        vuln: ["jwt", "disclosure"]
+    },
+    {
+        title: "JWT Secrets Exposed",
+        query: 'site:{DOMAIN} intext:"jwt" (intext:"secret" OR intext:"JWT_SECRET" OR intext:"jwtSecret")',
+        tech: [],
+        vuln: ["jwt", "secrets", "disclosure"]
+    },
+    {
+        title: "JWT Configuration",
+        query: 'site:{DOMAIN} intext:"jsonwebtoken" OR intext:"jwt.sign" OR intext:"jwt.verify"',
+        tech: [],
+        vuln: ["jwt", "config"]
+    },
+
+    // OAuth Misconfiguration
+    {
+        title: "OAuth Redirect URI",
+        query: 'site:{DOMAIN} inurl:"redirect_uri=" OR inurl:"redirect_url=" OR inurl:"callback="',
+        tech: [],
+        vuln: ["oauth", "openredirect"]
+    },
+    {
+        title: "OAuth Client Credentials",
+        query: 'site:{DOMAIN} intext:"client_id" OR intext:"client_secret" (intext:"oauth" OR intext:"authorization")',
+        tech: [],
+        vuln: ["oauth", "secrets", "disclosure"]
+    },
+    {
+        title: "OAuth Token Endpoints",
+        query: 'site:{DOMAIN} inurl:"/oauth/token" OR inurl:"/oauth2/token" OR inurl:"/token"',
+        tech: [],
+        vuln: ["oauth", "api"]
+    },
+
+    // SAML Vulnerabilities
+    {
+        title: "SAML Metadata Files",
+        query: 'site:{DOMAIN} ext:xml intext:"EntityDescriptor" OR intext:"saml" OR inurl:"saml/metadata"',
+        tech: [],
+        vuln: ["saml", "disclosure"]
+    },
+    {
+        title: "SAML SSO Endpoints",
+        query: 'site:{DOMAIN} inurl:"/saml" OR inurl:"/sso" OR inurl:"/SingleSignOnService"',
+        tech: [],
+        vuln: ["saml", "auth"]
+    },
+    {
+        title: "SAML Response Parameters",
+        query: 'site:{DOMAIN} inurl:"SAMLResponse=" OR inurl:"saml" (inurl:"response" OR inurl:"assertion")',
+        tech: [],
+        vuln: ["saml"]
+    },
+
+    // NoSQL Injection
+    {
+        title: "MongoDB Query Parameters",
+        query: 'site:{DOMAIN} inurl:"[$ne]" OR inurl:"[$gt]" OR inurl:"[$lt]" OR inurl:"[$regex]" OR inurl:"[$where]"',
+        tech: ["mongodb"],
+        vuln: ["nosqli"]
+    },
+    {
+        title: "NoSQL Endpoints",
+        query: 'site:{DOMAIN} inurl:"/api/" (inurl:"find" OR inurl:"query" OR inurl:"search") (intext:"mongodb" OR intext:"nosql")',
+        tech: [],
+        vuln: ["nosqli", "api"]
+    },
+
+    // LDAP Injection
+    {
+        title: "LDAP Search Endpoints",
+        query: 'site:{DOMAIN} inurl:"ldap" OR inurl:"directory" OR inurl:"search" (intext:"cn=" OR intext:"ou=" OR intext:"dc=")',
+        tech: [],
+        vuln: ["ldap"]
+    },
+    {
+        title: "LDAP Authentication",
+        query: 'site:{DOMAIN} intext:"LDAP" OR intext:"ldap://" (intext:"bind" OR intext:"search" OR intext:"authenticate")',
+        tech: [],
+        vuln: ["ldap", "auth"]
+    },
+
+    // Prototype Pollution
+    {
+        title: "JavaScript Prototype Pollution",
+        query: 'site:{DOMAIN} inurl:"__proto__" OR inurl:"constructor" OR inurl:"prototype"',
+        tech: ["nodejs"],
+        vuln: ["prototype", "rce"]
+    },
+    {
+        title: "Node.js Vulnerable Packages",
+        query: 'site:{DOMAIN} intext:"lodash" OR intext:"hoek" OR intext:"merge" (intext:"package.json" OR ext:json)',
+        tech: ["nodejs"],
+        vuln: ["prototype"]
+    },
+
+    // Cache Poisoning
+    {
+        title: "Cache Control Headers",
+        query: 'site:{DOMAIN} intext:"Cache-Control" OR intext:"X-Cache" OR intext:"CF-Cache-Status"',
+        tech: [],
+        vuln: ["cache", "disclosure"]
+    },
+    {
+        title: "CDN Cache Endpoints",
+        query: 'site:{DOMAIN} inurl:"/cache" OR inurl:"/cdn" OR inurl:"/static"',
+        tech: [],
+        vuln: ["cache"]
+    },
+
+    // Host Header Injection
+    {
+        title: "Password Reset Endpoints",
+        query: 'site:{DOMAIN} inurl:"/reset" OR inurl:"/forgot" OR inurl:"/password-reset" OR inurl:"/recover"',
+        tech: [],
+        vuln: ["hostinject", "auth"]
+    },
+    {
+        title: "Email Generation Endpoints",
+        query: 'site:{DOMAIN} inurl:"/email" OR inurl:"/mail" OR inurl:"/send"',
+        tech: [],
+        vuln: ["hostinject"]
+    },
+
+    // Rate Limiting Issues
+    {
+        title: "OTP/SMS Endpoints",
+        query: 'site:{DOMAIN} inurl:"/otp" OR inurl:"/sms" OR inurl:"/verify" OR inurl:"/send-code"',
+        tech: [],
+        vuln: ["ratelimit", "auth"]
+    },
+    {
+        title: "Registration Endpoints",
+        query: 'site:{DOMAIN} inurl:"/register" OR inurl:"/signup" OR inurl:"/create-account"',
+        tech: [],
+        vuln: ["ratelimit"]
+    },
+    {
+        title: "Forgot Password Endpoints",
+        query: 'site:{DOMAIN} inurl:"/forgot-password" OR inurl:"/reset-password" OR inurl:"/password/reset"',
+        tech: [],
+        vuln: ["ratelimit", "auth"]
+    },
+
+    // Mobile API Endpoints
+    {
+        title: "Mobile API Versions",
+        query: 'site:{DOMAIN} inurl:"/api/mobile" OR inurl:"/mobile/api" OR inurl:"/m/api" OR inurl:"/api/v1/mobile"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "Android API Endpoints",
+        query: 'site:{DOMAIN} inurl:"/android" OR inurl:"/api/android" OR intext:"android" (inurl:"/api/" OR inurl:"/v1/")',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "iOS API Endpoints",
+        query: 'site:{DOMAIN} inurl:"/ios" OR inurl:"/api/ios" OR intext:"ios" (inurl:"/api/" OR inurl:"/v1/")',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "Mobile App Config Files",
+        query: 'site:{DOMAIN} ext:json OR ext:plist (intext:"app" OR intext:"mobile" OR intext:"ios" OR intext:"android")',
+        tech: [],
+        vuln: ["config", "disclosure"]
+    },
+
+    // Internal IPs & Headers
+    {
+        title: "X-Forwarded-For Exposure",
+        query: 'site:{DOMAIN} intext:"X-Forwarded-For" OR intext:"X-Real-IP" OR intext:"X-Originating-IP"',
+        tech: [],
+        vuln: ["disclosure", "ssrf"]
+    },
+    {
+        title: "Internal IP Addresses",
+        query: 'site:{DOMAIN} intext:"192.168." OR intext:"10.0." OR intext:"172.16." OR intext:"127.0.0.1" OR intext:"localhost"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Server Headers Exposed",
+        query: 'site:{DOMAIN} intext:"X-Powered-By" OR intext:"Server:" OR intext:"X-AspNet-Version"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+
+    // Version Control in Production
+    {
+        title: ".git Directory Exposed",
+        query: 'site:{DOMAIN} inurl:"/.git" OR inurl:"/.git/HEAD" OR inurl:"/.git/config"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: ".svn Directory Exposed",
+        query: 'site:{DOMAIN} inurl:"/.svn" OR inurl:"/.svn/entries"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: ".hg Mercurial Exposed",
+        query: 'site:{DOMAIN} inurl:"/.hg" OR inurl:"/.hgignore"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: ".bzr Bazaar Exposed",
+        query: 'site:{DOMAIN} inurl:"/.bzr"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+
+    // Development/Staging Endpoints
+    {
+        title: "Staging Environment URLs",
+        query: 'site:staging.{DOMAIN} OR site:stage.{DOMAIN} OR site:stg.{DOMAIN}',
+        tech: [],
+        vuln: ["disclosure", "subdomain"]
+    },
+    {
+        title: "Development Environment URLs",
+        query: 'site:dev.{DOMAIN} OR site:develop.{DOMAIN} OR site:development.{DOMAIN}',
+        tech: [],
+        vuln: ["disclosure", "subdomain"]
+    },
+    {
+        title: "Test Environment URLs",
+        query: 'site:test.{DOMAIN} OR site:testing.{DOMAIN} OR site:qa.{DOMAIN}',
+        tech: [],
+        vuln: ["disclosure", "subdomain"]
+    },
+    {
+        title: "UAT Environment URLs",
+        query: 'site:uat.{DOMAIN} OR site:preprod.{DOMAIN} OR site:pre-prod.{DOMAIN}',
+        tech: [],
+        vuln: ["disclosure", "subdomain"]
+    },
+
+    // Changelogs & Documentation
+    {
+        title: "Changelog Files",
+        query: 'site:{DOMAIN} inurl:"CHANGELOG" OR inurl:"changelog" OR inurl:"changes.txt" OR inurl:"version.txt"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Version Information",
+        query: 'site:{DOMAIN} inurl:"version" OR inurl:"VERSION" OR intext:"v1.0" OR intext:"version:"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "API Documentation",
+        query: 'site:{DOMAIN} inurl:"/docs" OR inurl:"/documentation" OR inurl:"/api-docs" OR intitle:"API Documentation"',
+        tech: [],
+        vuln: ["api", "disclosure"]
+    },
+    {
+        title: "README Files",
+        query: 'site:{DOMAIN} inurl:"README" OR inurl:"readme.md" OR inurl:"README.txt"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+
+    // Payment Gateway Integration
+    {
+        title: "Stripe Webhook Endpoints",
+        query: 'site:{DOMAIN} inurl:"/webhook/stripe" OR inurl:"/stripe/webhook" OR inurl:"/webhooks/stripe"',
+        tech: [],
+        vuln: ["payment", "webhook"]
+    },
+    {
+        title: "PayPal IPN/Webhook",
+        query: 'site:{DOMAIN} inurl:"/ipn" OR inurl:"/paypal/webhook" OR inurl:"/webhook/paypal"',
+        tech: [],
+        vuln: ["payment", "webhook"]
+    },
+    {
+        title: "Payment Processing Endpoints",
+        query: 'site:{DOMAIN} inurl:"/payment" OR inurl:"/checkout" OR inurl:"/pay" OR inurl:"/billing"',
+        tech: [],
+        vuln: ["payment", "logic"]
+    },
+    {
+        title: "Payment Callback URLs",
+        query: 'site:{DOMAIN} inurl:"/callback" OR inurl:"/return" (intext:"payment" OR intext:"order" OR intext:"transaction")',
+        tech: [],
+        vuln: ["payment", "logic"]
+    },
+
+    // Webhook Endpoints
+    {
+        title: "Generic Webhook Endpoints",
+        query: 'site:{DOMAIN} inurl:"/webhook" OR inurl:"/webhooks" OR inurl:"/hook" OR inurl:"/hooks"',
+        tech: [],
+        vuln: ["webhook", "ssrf"]
+    },
+    {
+        title: "GitHub Webhooks",
+        query: 'site:{DOMAIN} inurl:"/webhook/github" OR inurl:"/github/webhook"',
+        tech: [],
+        vuln: ["webhook"]
+    },
+    {
+        title: "Slack Webhooks",
+        query: 'site:{DOMAIN} inurl:"/webhook/slack" OR inurl:"/slack/webhook"',
+        tech: [],
+        vuln: ["webhook"]
+    },
+
+    // File Conversion Services
+    {
+        title: "PDF Generation Endpoints",
+        query: 'site:{DOMAIN} inurl:"/pdf" OR inurl:"/generate-pdf" OR inurl:"/export/pdf" OR inurl:"/convert/pdf"',
+        tech: [],
+        vuln: ["pdf", "ssrf", "xss"]
+    },
+    {
+        title: "Image Conversion Endpoints",
+        query: 'site:{DOMAIN} inurl:"/convert" OR inurl:"/resize" OR inurl:"/thumbnail" OR inurl:"/image"',
+        tech: [],
+        vuln: ["ssrf", "upload"]
+    },
+    {
+        title: "Document Conversion",
+        query: 'site:{DOMAIN} inurl:"/convert" OR inurl:"/export" (intext:"docx" OR intext:"xlsx" OR intext:"pdf")',
+        tech: [],
+        vuln: ["xxe", "ssrf"]
+    },
+
+    // Email Templates
+    {
+        title: "Email Template Files",
+        query: 'site:{DOMAIN} inurl:"/templates/email" OR inurl:"/email-templates" OR ext:mjml',
+        tech: [],
+        vuln: ["ssti", "disclosure"]
+    },
+    {
+        title: "Email Preview Endpoints",
+        query: 'site:{DOMAIN} inurl:"/preview" OR inurl:"/email/preview" (intext:"template" OR intext:"email")',
+        tech: [],
+        vuln: ["ssti", "xss"]
+    },
+
+    // CDN Configuration
+    {
+        title: "CDN Configuration Files",
+        query: 'site:{DOMAIN} ext:xml OR ext:json (intext:"cdn" OR intext:"cloudfront" OR intext:"distribution")',
+        tech: [],
+        vuln: ["cdn", "disclosure"]
+    },
+    {
+        title: "Origin Exposure",
+        query: 'site:{DOMAIN} intext:"origin" (intext:"cdn" OR intext:"cloudfront" OR intext:"s3")',
+        tech: [],
+        vuln: ["cdn", "disclosure"]
+    },
+
+    // WebSocket Endpoints
+    {
+        title: "WebSocket Connections",
+        query: 'site:{DOMAIN} inurl:"ws://" OR inurl:"wss://" OR intext:"WebSocket" OR intext:"socket.io"',
+        tech: [],
+        vuln: ["websocket", "api"]
+    },
+    {
+        title: "Socket.io Endpoints",
+        query: 'site:{DOMAIN} inurl:"/socket.io" OR intext:"socket.io" OR inurl:"/ws"',
+        tech: ["nodejs"],
+        vuln: ["websocket", "api"]
+    },
+
+    // gRPC Endpoints
+    {
+        title: "gRPC Endpoints",
+        query: 'site:{DOMAIN} inurl:":50051" OR intext:"grpc" OR intext:"gRPC" OR inurl:"/grpc"',
+        tech: [],
+        vuln: ["api", "grpc"]
+    },
+    {
+        title: "gRPC-Web",
+        query: 'site:{DOMAIN} intext:"grpc-web" OR intext:"grpcweb"',
+        tech: [],
+        vuln: ["api", "grpc"]
+    },
+
+    // SSRF Additional Patterns
+    {
+        title: "Image Fetch SSRF",
+        query: 'site:{DOMAIN} inurl:"image=" OR inurl:"img=" OR inurl:"src=" OR inurl:"avatar=" OR inurl:"photo="',
+        tech: [],
+        vuln: ["ssrf"]
+    },
+    {
+        title: "URL Validator SSRF",
+        query: 'site:{DOMAIN} inurl:"/check" OR inurl:"/validate" OR inurl:"/verify" (inurl:"url" OR inurl:"link")',
+        tech: [],
+        vuln: ["ssrf"]
+    },
+    {
+        title: "Link Preview SSRF",
+        query: 'site:{DOMAIN} inurl:"/preview" OR inurl:"/unfurl" OR inurl:"/link-preview"',
+        tech: [],
+        vuln: ["ssrf", "xss"]
+    },
+
+    // XML-RPC
+    {
+        title: "XML-RPC Endpoints",
+        query: 'site:{DOMAIN} inurl:"xmlrpc.php" OR inurl:"/xmlrpc" OR inurl:"/rpc"',
+        tech: [],
+        vuln: ["xmlrpc", "ssrf"]
+    },
+    {
+        title: "XML-RPC Pingback",
+        query: 'site:{DOMAIN} intext:"pingback" OR inurl:"/pingback" (intext:"xmlrpc" OR ext:xml)',
+        tech: [],
+        vuln: ["xmlrpc", "ssrf"]
+    },
+
+    // Business Logic
+    {
+        title: "Coupon/Promo Code Endpoints",
+        query: 'site:{DOMAIN} inurl:"/coupon" OR inurl:"/promo" OR inurl:"/discount" OR inurl:"/voucher"',
+        tech: [],
+        vuln: ["logic", "discount"]
+    },
+    {
+        title: "Referral Program Endpoints",
+        query: 'site:{DOMAIN} inurl:"/referral" OR inurl:"/refer" OR inurl:"/invite"',
+        tech: [],
+        vuln: ["logic", "referral"]
+    },
+    {
+        title: "Cart/Checkout Manipulation",
+        query: 'site:{DOMAIN} inurl:"/cart" OR inurl:"/basket" OR inurl:"/checkout" OR inurl:"/order"',
+        tech: [],
+        vuln: ["logic", "payment"]
+    },
+    {
+        title: "Quantity/Price Parameters",
+        query: 'site:{DOMAIN} inurl:"quantity=" OR inurl:"price=" OR inurl:"amount=" OR inurl:"total="',
+        tech: [],
+        vuln: ["logic", "payment"]
+    },
+
+    // Additional High-Value Targets
+    {
+        title: "Backup/Export Functionality",
+        query: 'site:{DOMAIN} inurl:"/export" OR inurl:"/backup" OR inurl:"/download" OR inurl:"/dump"',
+        tech: [],
+        vuln: ["backup", "disclosure"]
+    },
+    {
+        title: "Import Functionality",
+        query: 'site:{DOMAIN} inurl:"/import" OR inurl:"/upload/csv" OR inurl:"/upload/xml"',
+        tech: [],
+        vuln: ["xxe", "upload"]
+    },
+    {
+        title: "Debug/Info Pages",
+        query: 'site:{DOMAIN} inurl:"/debug" OR inurl:"/info" OR inurl:"/phpinfo" OR inurl:"/status"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Error/Exception Pages",
+        query: 'site:{DOMAIN} inurl:"/error" OR inurl:"/exception" OR intitle:"Error" OR intitle:"Exception"',
+        tech: [],
+        vuln: ["disclosure"]
+    },
+    {
+        title: "Installer/Setup Pages",
+        query: 'site:{DOMAIN} inurl:"/install" OR inurl:"/setup" OR inurl:"/installer" OR intitle:"Installation"',
+        tech: [],
+        vuln: ["disclosure", "install"]
     }
 ];
+
