@@ -1,10 +1,10 @@
 # DorkVerse - Reconnaissance Tool
 
-A comprehensive Google Dorks tool for bug bounty hunters with 1800+ dorks, smart filtering, and automatic domain insertion.
+A comprehensive Google Dorks tool for bug bounty hunters with 400+ dorks, smart filtering, and automatic domain insertion.
 
 ## 🌟 Features
 
-- **1800+ Enhanced Dorks**: Complete coverage for modern web apps
+- **400+ Enhanced Dorks**: Complete coverage for modern web apps
 - **Smart Filtering**: 30+ tech stacks, 40+ vulnerability types
 - **Domain Persistence**: Auto-save target domain in localStorage
 - **Quick Actions**: Copy to clipboard or search directly in Google
@@ -24,7 +24,7 @@ DorkVerse/
 ├── index.html          # Main UI
 ├── styles.css          # Styling
 ├── app.js              # Logic
-├── dorks-database.js   # 1800+ dorks
+├── dorks-database.js   # 400+ dorks
 └── README.md           # Docs
 ```
 
