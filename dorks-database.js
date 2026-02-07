@@ -1071,61 +1071,61 @@ const dorksDatabase = [
         title: "Internal Only Documents",
         query: 'site:{DOMAIN} intext:"internal only" OR intext:"for internal use" OR intext:"internal use only" OR intext:"not for distribution" ext:pdf OR ext:doc OR ext:docx OR ext:ppt OR ext:pptx',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Confidential Documents",
         query: 'site:{DOMAIN} intext:"confidential" OR intext:"strictly confidential" OR intext:"highly confidential" (ext:pdf OR ext:doc OR ext:docx OR ext:xls OR ext:xlsx)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Classified & Restricted Documents",
         query: 'site:{DOMAIN} intext:"classified" OR intext:"restricted" OR intext:"sensitive" OR intext:"proprietary" (ext:pdf OR ext:doc OR ext:docx)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Draft & Work in Progress Documents",
         query: 'site:{DOMAIN} intext:"draft" OR intext:"work in progress" OR intext:"wip" OR intext:"preliminary" OR intext:"do not distribute" (ext:pdf OR ext:doc OR ext:docx OR ext:ppt)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Company Private/Internal Presentations",
         query: 'site:{DOMAIN} intext:"company private" OR intext:"internal presentation" OR intext:"internal meeting" OR intext:"confidential presentation" ext:ppt OR ext:pptx OR ext:pdf',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "NDA & Confidentiality Agreement Documents",
         query: 'site:{DOMAIN} intext:"non-disclosure" OR intext:"nda" OR intext:"confidentiality agreement" OR intext:"proprietary information" ext:pdf OR ext:doc OR ext:docx',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Employee/Staff Only Documents",
         query: 'site:{DOMAIN} intext:"employees only" OR intext:"staff only" OR intext:"internal staff" OR intext:"authorized personnel" (ext:pdf OR ext:doc OR ext:docx)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Executive/Management Only Documents",
         query: 'site:{DOMAIN} intext:"executive only" OR intext:"management only" OR intext:"board confidential" OR intext:"leadership team" (ext:pdf OR ext:doc OR ext:ppt)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Internal Reports & Analysis",
         query: 'site:{DOMAIN} intext:"internal report" OR intext:"internal analysis" OR intext:"confidential report" OR intext:"for internal review" ext:pdf OR ext:doc OR ext:docx OR ext:xls',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "Not for Public Distribution",
         query: 'site:{DOMAIN} intext:"not for public" OR intext:"do not publish" OR intext:"unpublished" OR intext:"private circulation" (ext:pdf OR ext:doc OR ext:docx)',
         tech: [],
-        vuln: ["disclosure", "documents"]
+        vuln: ["sensitive-docs"]
     },
     {
         title: "User Registration Data",
